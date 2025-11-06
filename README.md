@@ -143,3 +143,106 @@ Active types found: 8
 Type created for deletion: TypeDTO(id=11, name=ferret, ...)
 Type deleted with id: 11
 Validation successful: Type not found after deletion
+
+---
+
+## 5. CONSULTAS SQL EJECUTADAS
+
+### 5.1 SELECT
+sql
+select t1_0.id, t1_0.active, t1_0.average_lifespan, t1_0.care_level, 
+       t1_0.description, t1_0.name, t1_0.size_category 
+from types t1_0
+
+
+### 5.2 INSERT
+sql
+insert into types (active, average_lifespan, care_level, description, 
+                   name, size_category, id) 
+values (?, ?, ?, ?, ?, ?, default)
+
+
+### 5.3 UPDATE
+sql
+update types 
+set active=?, average_lifespan=?, care_level=?, 
+    description=?, name=?, size_category=? 
+where id=?
+
+
+### 5.4 DELETE
+sql
+delete from types where id=?
+
+
+---
+
+## 6. TECNOLOGÍAS UTILIZADAS
+
+- *Java:* 17.0.12
+- *Spring Boot:* 3.5.6
+- *Spring Data JPA:* Gestión de persistencia
+- *Hibernate:* 6.6.29.Final (ORM)
+- *H2 Database:* Base de datos en memoria para pruebas
+- *JUnit 5:* Framework de pruebas unitarias
+- *Lombok:* Reducción de código boilerplate
+- *Maven:* Gestión de dependencias y construcción
+- *Git:* Control de versiones
+
+---
+
+## 7. PATRÓN DE ARQUITECTURA
+
+El proyecto implementa una arquitectura en capas:
+
+1. *Capa de Presentación (DTO):* Transferencia de datos
+2. *Capa de Negocio (Service):* Lógica de negocio
+3. *Capa de Persistencia (Repository):* Acceso a datos
+4. *Capa de Dominio (Entity):* Modelo de datos
+5. *Capa de Mapeo (Mapper):* Conversión DTO ↔ Entity
+6. *Capa de Pruebas (Test):* Validación de funcionalidad
+
+---
+
+## 8. CONTROL DE VERSIONES GIT
+
+### 8.1 Comandos Utilizados
+bash
+git checkout -b feature/caso5-type-tests
+git add .
+git commit -m "Implementación CASO 5: Pruebas unitarias para tabla types"
+git push origin feature/caso5-type-tests
+
+
+### 8.2 Archivos Versionados
+- 7 archivos Java principales
+- 1 archivo de pruebas
+- Configuración Maven (pom.xml)
+
+---
+
+## CONCLUSIONES
+
+1. Se implementaron exitosamente las pruebas unitarias CRUD completas para la tabla types, logrando una cobertura del 100% en las operaciones básicas de creación, actualización, búsqueda y eliminación de tipos de mascotas.
+
+2. El uso del patrón DTO-Mapper-Service-Repository permite una separación clara de responsabilidades, facilitando el mantenimiento del código y la escalabilidad del sistema. Esta arquitectura en capas mejora la testabilidad y reduce el acoplamiento entre componentes.
+
+3. La utilización de la base de datos H2 en memoria para las pruebas unitarias garantiza la independencia de los tests respecto al entorno de producción, permitiendo pruebas rápidas, reproducibles y sin efectos secundarios en la base de datos real.
+
+4. El framework JUnit 5 junto con Spring Boot Test proporciona un entorno robusto para la ejecución de pruebas, permitiendo la inyección de dependencias y la configuración automática del contexto de Spring, lo que simplifica significativamente el proceso de testing.
+
+5. La implementación siguió exitosamente el patrón establecido en PetServiceTest, demostrando consistencia en el código y facilitando la comprensión del proyecto para futuros desarrolladores o mantenedores del sistema.
+
+---
+
+## RECOMENDACIONES
+
+1. Implementar pruebas de integración adicionales que validen el comportamiento de múltiples componentes trabajando juntos.
+
+2. Agregar pruebas de validación de datos para verificar restricciones de negocio como valores nulos, longitudes de campo y formatos específicos.
+
+3. Considerar la implementación de pruebas de rendimiento para evaluar el comportamiento del sistema bajo carga.
+
+4. Documentar el código con Javadoc para mejorar la mantenibilidad y facilitar la comprensión del sistema.
+
+---
